@@ -1,3 +1,10 @@
+const enLowerCase = [{ code: '192', text: '`', location: '0' }, { code: '49', text: '1', location: '0' }, { code: '50', text: '2', location: '0' }, { code: '51', text: '3', location: '0' }, { code: '52', text: '4', location: '0' }, { code: '53', text: '5', location: '0' }, { code: '54', text: '6', location: '0' }, { code: '55', text: '7', location: '0' }, { code: '56', text: '8', location: '0' }, { code: '57', text: '9', location: '0' }, { code: '48', text: '0', location: '0' }, { code: '189', text: '-', location: '0' }, { code: '187', text: '=', location: '0' }, { code: '8', text: 'Backspace', location: '0' }, { code: '9', text: 'Tab', location: '0' }, { code: '81', text: 'q', location: '0' }, { code: '87', text: 'w', location: '0' }, { code: '69', text: 'e', location: '0' }, { code: '82', text: 'r', location: '0' }, { code: '84', text: 't', location: '0' }, { code: '89', text: 'y', location: '0' }, { code: '85', text: 'u', location: '0' }, { code: '73', text: 'i', location: '0' }, { code: '79', text: 'o', location: '0' }, { code: '80', text: 'p', location: '0' }, { code: '219', text: '[', location: '0' }, { code: '221', text: ']', location: '0' }, { code: '46', text: 'Delete', location: '0' }, { code: '20', text: 'CapsLock', location: '0' }, { code: '65', text: 'a', location: '0' }, { code: '83', text: 's', location: '0' }, { code: '68', text: 'd', location: '0' }, { code: '70', text: 'f', location: '0' }, { code: '71', text: 'g', location: '0' }, { code: '72', text: 'h', location: '0' }, { code: '74', text: 'j', location: '0' }, { code: '75', text: 'k', location: '0' }, { code: '76', text: 'l', location: '0' }, { code: '186', text: ';', location: '0' }, { code: '222', text: '"', location: '0' }, { code: '13', text: 'Enter', location: '0' }, { code: '16', text: 'Shift', location: '1' }, { code: '220', text: '\\', location: '0' }, { code: '90', text: 'z', location: '0' }, { code: '88', text: 'x', location: '0' }, { code: '67', text: 'c', location: '0' }, { code: '86', text: 'v', location: '0' }, { code: '66', text: 'b', location: '0' }, { code: '78', text: 'n', location: '0' }, { code: '77', text: 'm', location: '0' }, { code: '188', text: ', ',location: '0' }, { code: '190', text: '.', location: '0' }, { code: '191', text: '/', location: '0' }, { code: '38', text: '▲', location: '0' }, { code: '16', text: 'Shift', location: '2' }, { code: '17', text: 'Ctrl', location: '1' }, { code: '91', text: 'Win', location: '0' }, { code: '18', text: 'Alt', location: '1' }, { code: '32', text: ' ', location: '0' }, { code: '18', text: 'Alt', location: '2' }, { code: '17', text: 'Ctrl', location: '2' }, { code: '37', text: '◄', location: '0' }, { code: '40', text: '▼', location: '0' }, { code: '39', text: '►', location: '0' }];
+const enUpperCase = [{ code: '192', text: '~', location: '0' }, { code: '49', text: '!', location: '0' }, { code: '50', text: '@', location: '0' }, { code: '51', text: '#', location: '0' }, { code: '52', text: '$', location: '0' }, { code: '53', text: '%', location: '0' }, { code: '54', text: '^', location: '0' }, { code: '55', text: '&', location: '0' }, { code: '56', text: '*', location: '0' }, { code: '57', text: '(', location: '0' }, { code: '48', text: ')', location: '0' }, { code: '189', text: '_', location: '0' }, { code: '187', text: '+', location: '0' }, { code: '8', text: 'Backspace', location: '0' }, { code: '9', text: 'Tab', location: '0' }, { code: '81', text: 'Q', location: '0' }, { code: '87', text: 'W', location: '0' }, { code: '69', text: 'E', location: '0' }, { code: '82', text: 'R', location: '0' }, { code: '84', text: 'T', location: '0' }, { code: '89', text: 'Y', location: '0' }, { code: '85', text: 'U', location: '0' }, { code: '73', text: 'I', location: '0' }, { code: '79', text: 'O', location: '0' }, { code: '80', text: 'P', location: '0' }, { code: '219', text: '[', location: '0' }, { code: '221', text: ']', location: '0' }, { code: '46', text: 'Delete', location: '0' }, { code: '20', text: 'CapsLock', location: '0' }, { code: '65', text: 'A', location: '0' }, { code: '83', text: 'S', location: '0' }, { code: '68', text: 'D', location: '0' }, { code: '70', text: 'F', location: '0' }, { code: '71', text: 'G', location: '0' }, { code: '72', text: 'H', location: '0' }, { code: '74', text: 'J', location: '0' }, { code: '75', text: 'K', location: '0' }, { code: '76', text: 'L', location: '0' }, { code: '186', text: ';', location: '0' }, { code: '222', text: '"', location: '0' }, { code: '13', text: 'Enter', location: '0' }, { code: '16', text: 'Shift', location: '1' }, { code: '220', text: '\\', location: '0' }, { code: '90', text: 'Z', location: '0' }, { code: '88', text: 'X', location: '0' }, { code: '67', text: 'C', location: '0' }, { code: '86', text: 'V', location: '0' }, { code: '66', text: 'B', location: '0' }, { code: '78', text: 'N', location: '0' }, { code: '77', text: 'M', location: '0' }, { code: '188', text: ', ',location: '0' }, { code: '190', text: '.', location: '0' }, { code: '191', text: '/', location: '0' }, { code: '38', text: '▲', location: '0' }, { code: '16', text: 'Shift', location: '2' }, { code: '17', text: 'Ctrl', location: '1' }, { code: '91', text: 'Win', location: '0' }, { code: '18', text: 'Alt', location: '1' }, { code: '32', text: ' ', location: '0' }, { code: '18', text: 'Alt', location: '2' }, { code: '17', text: 'Ctrl', location: '2' }, { code: '37', text: '◄', location: '0' }, { code: '40', text: '▼', location: '0' }, { code: '39', text: '►', location: '0' }];
+const ruLowerCase = [{ code: '192', text: 'ё', location: '0' }, { code: '49', text: '1', location: '0' }, { code: '50', text: '2', location: '0' }, { code: '51', text: '3', location: '0' }, { code: '52', text: '4', location: '0' }, { code: '53', text: '5', location: '0' }, { code: '54', text: '6', location: '0' }, { code: '55', text: '7', location: '0' }, { code: '56', text: '8', location: '0' }, { code: '57', text: '9', location: '0' }, { code: '48', text: '0', location: '0' }, { code: '189', text: '-', location: '0' }, { code: '187', text: '=', location: '0' }, { code: '8', text: 'Backspace', location: '0' }, { code: '9', text: 'Tab', location: '0' }, { code: '81', text: 'й', location: '0' }, { code: '87', text: 'ц', location: '0' }, { code: '69', text: 'у', location: '0' }, { code: '82', text: 'к', location: '0' }, { code: '84', text: 'е', location: '0' }, { code: '89', text: 'н', location: '0' }, { code: '85', text: 'г', location: '0' }, { code: '73', text: 'ш', location: '0' }, { code: '79', text: 'щ', location: '0' }, { code: '80', text: 'з', location: '0' }, { code: '219', text: 'х', location: '0' }, { code: '221', text: 'ъ', location: '0' }, { code: '46', text: 'Delete', location: '0' }, { code: '20', text: 'CapsLock', location: '0' }, { code: '65', text: 'ф', location: '0' }, { code: '83', text: 'ы', location: '0' }, { code: '68', text: 'в', location: '0' }, { code: '70', text: 'а', location: '0' }, { code: '71', text: 'п', location: '0' }, { code: '72', text: 'р', location: '0' }, { code: '74', text: 'о', location: '0' }, { code: '75', text: 'л', location: '0' }, { code: '76', text: 'д', location: '0' }, { code: '186', text: 'ж', location: '0' }, { code: '222', text: 'э', location: '0' }, { code: '13', text: 'Enter', location: '0' }, { code: '16', text: 'Shift', location: '1' }, { code: '220', text: '\\', location: '0' }, { code: '90', text: 'я', location: '0' }, { code: '88', text: 'ч', location: '0' }, { code: '67', text: 'с', location: '0' }, { code: '86', text: 'м', location: '0' }, { code: '66', text: 'и', location: '0' }, { code: '78', text: 'т', location: '0' }, { code: '77', text: 'ь', location: '0' }, { code: '188', text: 'б', location: '0' }, { code: '190', text: 'ю', location: '0' }, { code: '191', text: '/', location: '0' }, { code: '38', text: '▲', location: '0' }, { code: '16', text: 'Shift', location: '2' }, { code: '17', text: 'Ctrl', location: '1' }, { code: '91', text: 'Win', location: '0' }, { code: '18', text: 'Alt', location: '1' }, { code: '32', text: ' ', location: '0' }, { code: '18', text: 'Alt', location: '2' }, { code: '17', text: 'Ctrl', location: '2' }, { code: '37', text: '◄', location: '0' }, { code: '40', text: '▼', location: '0' }, { code: '39', text: '►', location: '0' }];
+const ruUpperCase = [{ code: '192', text: 'Ё', location: '0' }, { code: '49', text: '!', location: '0' }, { code: '50', text: '\'', location: '0' }, { code: '51', text: '№', location: '0' }, { code: '52', text: ';', location: '0' }, { code: '53', text: '%', location: '0' }, { code: '54', text: ':', location: '0' }, { code: '55', text: '?', location: '0' }, { code: '56', text: '*', location: '0' }, { code: '57', text: '(', location: '0' }, { code: '48', text: ')', location: '0' }, { code: '189', text: '_', location: '0' }, { code: '187', text: '+', location: '0' }, { code: '8', text: 'Backspace', location: '0' }, { code: '9', text: 'Tab', location: '0' }, { code: '81', text: 'Й', location: '0' }, { code: '87', text: 'Ц', location: '0' }, { code: '69', text: 'У', location: '0' }, { code: '82', text: 'К', location: '0' }, { code: '84', text: 'Т', location: '0' }, { code: '89', text: 'Н', location: '0' }, { code: '85', text: 'Г', location: '0' }, { code: '73', text: 'Ш', location: '0' }, { code: '79', text: 'Щ', location: '0' }, { code: '80', text: 'З', location: '0' }, { code: '219', text: 'Х', location: '0' }, { code: '221', text: 'Ъ', location: '0' }, { code: '46', text: 'Delete', location: '0' }, { code: '20', text: 'CapsLock', location: '0' }, { code: '65', text: 'Ф', location: '0' }, { code: '83', text: 'Ы', location: '0' }, { code: '68', text: 'В', location: '0' }, { code: '70', text: 'А', location: '0' }, { code: '71', text: 'П', location: '0' }, { code: '72', text: 'Р', location: '0' }, { code: '74', text: 'О', location: '0' }, { code: '75', text: 'Л', location: '0' }, { code: '76', text: 'Д', location: '0' }, { code: '186', text: 'Ж', location: '0' }, { code: '222', text: 'Э', location: '0' }, { code: '13', text: 'Enter', location: '0' }, { code: '16', text: 'Shift', location: '1' }, { code: '220', text: '\\', location: '0' }, { code: '90', text: 'Я', location: '0' }, { code: '88', text: 'Ч', location: '0' }, { code: '67', text: 'С', location: '0' }, { code: '86', text: 'М', location: '0' }, { code: '66', text: 'И', location: '0' }, { code: '78', text: 'Т', location: '0' }, { code: '77', text: 'Ь', location: '0' }, { code: '188', text: 'Ю', location: '0' }, { code: '190', text: 'Ю', location: '0' }, { code: '191', text: '/', location: '0' }, { code: '38', text: '▲', location: '0' }, { code: '16', text: 'Shift', location: '2' }, { code: '17', text: 'Ctrl', location: '1' }, { code: '91', text: 'Win', location: '0' }, { code: '18', text: 'Alt', location: '1' }, { code: '32', text: ' ', location: '0' }, { code: '18', text: 'Alt', location: '2' }, { code: '17', text: 'Ctrl', location: '2' }, { code: '37', text: '◄', location: '0' }, { code: '40', text: '▼', location: '0' }, { code: '39', text: '►', location: '0' }];
+
+let shiftIsPressed = false;
+
 const keyboard = document.createElement('div');
 keyboard.classList.add('keyboard');
 
@@ -5,46 +12,34 @@ const wrapper = document.createElement('div');
 wrapper.classList.add('wrapper');
 
 const textarea = document.createElement('textarea');
-textarea.setAttribute('readonly', '');
+textarea.setAttribute('autofocus', '');
 
 document.body.append(wrapper);
 wrapper.append(textarea);
 wrapper.append(keyboard);
 
-const enBtnsLowerCase = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', 'Delete', 'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', 'Enter', 'Shift_1', '\\', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '▲', 'Shift_2', 'Control_1', 'Win', 'Alt', ' ', 'Control_2', '◄', '▼', '►'];
-const enBtnsUpperCase = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '[', ']', 'Delete', 'CapsLock', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';', '\'', 'Enter', 'Shift_1', '\\', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '/', '▲', 'Shift_2', 'Control_1', 'Win', 'Alt', ' ', 'Control_2', '◄', '▼', '►'];
-
-class Key {
-  constructor(name) {
-    if (name.indexOf('Shift') !== -1) {
-      this.text = 'Shift';
-      this.dataKey = 'Shift';
-      this.dataLocation = name.slice(-1);
-    } else if (name.indexOf('Control') !== -1) {
-      this.text = 'Ctrl';
-      this.dataKey = 'Control';
-      this.dataLocation = name.slice(-1);
-    } else {
-      this.text = name;
-      this.dataKey = name;
-    }
-  }
-}
+let activeKeyboard = enLowerCase;
 
 function createKeyElement({
-  text, dataKey, dataLocation,
+  code,
+  text,
+  location,
 }) {
   const key = document.createElement('div');
   key.classList.add('key');
-  key.setAttribute('data-key', dataKey);
-  if (dataLocation) key.setAttribute('data-location', dataLocation);
+  key.setAttribute('data-code', code);
+  key.setAttribute('data-location', location);
   key.textContent = text;
   return key;
 }
 
-for (let i = 0; i < enBtnsLowerCase.length; i += 1) {
-  const key = new Key(enBtnsLowerCase[i]);
-  keyboard.append(createKeyElement(key));
+function generateKeydownEvent(code) {
+  const event = new KeyboardEvent('keydown', {
+    bubbles: true,
+    cancelable: true,
+    keyCode: code,
+  });
+  document.dispatchEvent(event);
 }
 
 function highlightKey(key) {
@@ -54,25 +49,255 @@ function highlightKey(key) {
   }, 300);
 }
 
-function generateKeydownEvent(key) {
-  const event = new KeyboardEvent('keydown', {
-    bubbles: true,
-    cancelable: true,
-    key,
+function createKeyboard(btns) {
+  for (let i = 0; i < btns.length; i += 1) {
+    keyboard.append(createKeyElement(btns[i]));
+  }
+
+  document.querySelectorAll('.key').forEach((item) => {
+    item.addEventListener('mousedown', () => {
+      highlightKey(item);
+      generateKeydownEvent(item.dataset.code);
+    });
   });
-  document.dispatchEvent(event);
+}
+
+createKeyboard(enLowerCase);
+
+function changeCase() {
+  keyboard.innerHTML = '';
+  switch (activeKeyboard) {
+    case enLowerCase:
+      createKeyboard(enUpperCase);
+      activeKeyboard = enUpperCase;
+      break;
+
+    case enUpperCase:
+      createKeyboard(enLowerCase);
+      activeKeyboard = enLowerCase;
+      break;
+
+    case ruLowerCase:
+      createKeyboard(ruUpperCase);
+      activeKeyboard = ruUpperCase;
+      break;
+
+    case ruUpperCase:
+      createKeyboard(ruLowerCase);
+      activeKeyboard = ruLowerCase;
+      break;
+
+    default:
+      createKeyboard(enLowerCase);
+      activeKeyboard = enLowerCase;
+  }
 }
 
 document.addEventListener('keydown', (e) => {
-  textarea.value += e.key;
+  e.preventDefault();
   document.querySelectorAll('.key').forEach((item) => {
-    if (e.key === item.dataset.key) highlightKey(item);
+    if (e.location === parseInt(item.dataset.location, 10) && (
+      e.keyCode === parseInt(item.dataset.code, 10))) {
+      highlightKey(item);
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      switch (e.keyCode) {
+        case 13:
+          textarea.setRangeText('\n', textarea.selectionStart, textarea.selectionEnd, 'end');
+          break;
+
+        case 8:
+          textarea.value = textarea.value.slice(0, start - 1)
+          + textarea.value.slice(end, textarea.value.length);
+          textarea.selectionStart = start - 1;
+          textarea.selectionEnd = end - 1;
+          break;
+
+        case 20:
+          changeCase();
+          break;
+
+        case 18 && 17:
+          keyboard.innerHTML = '';
+          switch (activeKeyboard) {
+            case enLowerCase:
+              createKeyboard(ruLowerCase);
+              activeKeyboard = ruLowerCase;
+              localStorage.setItem('keyboardLang', 'ru');
+              break;
+
+            case enUpperCase:
+              createKeyboard(ruUpperCase);
+              activeKeyboard = ruUpperCase;
+              localStorage.setItem('keyboardLang', 'ru');
+              break;
+
+            case ruLowerCase:
+              createKeyboard(enLowerCase);
+              activeKeyboard = enLowerCase;
+              localStorage.setItem('keyboardLang', 'en');
+              break;
+
+            case ruUpperCase:
+              createKeyboard(enUpperCase);
+              activeKeyboard = enUpperCase;
+              localStorage.setItem('keyboardLang', 'en');
+              break;
+
+            default:
+              createKeyboard(enLowerCase);
+              activeKeyboard = enLowerCase;
+              localStorage.setItem('keyboardLang', 'en');
+          }
+          break;
+
+        case 16:
+          shiftIsPressed = true;
+          changeCase();
+          break;
+
+        case 18:
+          break;
+
+        case 46:
+          textarea.value = textarea.value.slice(0, start)
+          + textarea.value.slice(end + 1, textarea.value.length);
+          textarea.selectionStart = start;
+          textarea.selectionEnd = end;
+          break;
+
+        case 91:
+          break;
+
+        case 17:
+          break;
+
+        case 37:
+          textarea.selectionStart = start - 1;
+          textarea.selectionEnd = end - 1;
+          break;
+
+        case 39:
+          textarea.selectionStart = start + 1;
+          textarea.selectionEnd = end + 1;
+          break;
+
+        case 9:
+          textarea.setRangeText('  ', textarea.selectionStart, textarea.selectionEnd, 'end');
+          break;
+
+        default:
+          textarea.setRangeText(item.textContent, textarea.selectionStart, textarea.selectionEnd, 'end');
+      }
+    }
   });
+  textarea.focus();
 });
 
-document.querySelectorAll('.key').forEach((item) => {
-  item.addEventListener('click', () => {
-    highlightKey(item);
-    generateKeydownEvent(item.dataset.key);
-  });
+document.addEventListener('keyup', () => {
+  if (shiftIsPressed) {
+    shiftIsPressed = false;
+    changeCase();
+  }
 });
+
+
+// class KeyBoard {
+//   constructor() {
+//     this.lang = JSON.parse(localStorage.getItem('keyboardLang')) || 'en';
+//     this.activeKeyboard = enLowerCase;
+//     this.shiftIsPressed = false;
+//   }
+
+//   generateKeydownEvent(code) {
+//     const event = new KeyboardEvent('keydown', {
+//       bubbles: true,
+//       cancelable: true,
+//       keyCode: code,
+//     });
+//     document.dispatchEvent(event);
+//   }
+
+//   highlightKey(key) {
+//     key.classList.add('active');
+//     setTimeout(() => {
+//       key.classList.remove('active');
+//     }, 300);
+//   }
+
+//   createKeyboard(btns) {
+//     for (let i = 0; i < btns.length; i += 1) {
+//       keyboard.append(createKeyElement(btns[i]));
+//     }
+
+//     document.querySelectorAll('.key').forEach((item) => {
+//       item.addEventListener('mousedown', () => {
+//         this.highlightKey(item);
+//         this.generateKeydownEvent(item.dataset.code);
+//       });
+//     });
+//   }
+
+//   changeCase() {
+//     keyboard.innerHTML = '';
+//     switch (this.activeKeyboard) {
+//       case enLowerCase:
+//         createKeyboard(enUpperCase);
+//         this.activeKeyboard = enUpperCase;
+//         break;
+
+//       case enUpperCase:
+//         createKeyboard(enLowerCase);
+//         this.activeKeyboard = enLowerCase;
+//         break;
+
+//       case ruLowerCase:
+//         createKeyboard(ruUpperCase);
+//         this.activeKeyboard = ruUpperCase;
+//         break;
+
+//       case ruUpperCase:
+//         createKeyboard(ruLowerCase);
+//         this.activeKeyboard = ruLowerCase;
+//         break;
+
+//       default:
+//         createKeyboard(enLowerCase);
+//         this.activeKeyboard = enLowerCase;
+//     }
+//   }
+
+//   changeLang() {
+//     keyboard.innerHTML = '';
+//     switch (this.activeKeyboard) {
+//       case enLowerCase:
+//         createKeyboard(ruLowerCase);
+//         this.activeKeyboard = ruLowerCase;
+//         localStorage.setItem('keyboardLang', 'ru');
+//         break;
+
+//       case enUpperCase:
+//         createKeyboard(ruUpperCase);
+//         this.activeKeyboard = ruUpperCase;
+//         localStorage.setItem('keyboardLang', 'ru');
+//         break;
+
+//       case ruLowerCase:
+//         createKeyboard(enLowerCase);
+//         this.activeKeyboard = enLowerCase;
+//         localStorage.setItem('keyboardLang', 'en');
+//         break;
+
+//       case ruUpperCase:
+//         createKeyboard(enUpperCase);
+//         this.activeKeyboard = enUpperCase;
+//         localStorage.setItem('keyboardLang', 'en');
+//         break;
+
+//       default:
+//         createKeyboard(enLowerCase);
+//         this.activeKeyboard = enLowerCase;
+//         localStorage.setItem('keyboardLang', 'en');
+//     }
+//   }
+// }
