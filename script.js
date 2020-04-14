@@ -90,6 +90,11 @@ const ruUpperCase = [{ code: '192', text: 'Ё', location: '0' }, { code: '49', t
   { code: '18', text: 'Alt', location: '2' }, { code: '17', text: 'Ctrl', location: '2' }, { code: '37', text: '◄', location: '0' },
   { code: '40', text: '▼', location: '0' }, { code: '39', text: '►', location: '0' }];
 
+const LANGUAGE = {
+  EN: 'en',
+  RU: 'ru',
+};
+
 const keyboard = document.createElement('div');
 keyboard.classList.add('keyboard');
 
@@ -100,11 +105,9 @@ const description = document.createElement('div');
 description.classList.add('description');
 description.innerHTML = '<div>Ctrl + Alt  - change language</div><div><i>Windows OS</i></div>';
 
-document.body.append(wrapper);
-
 class KeyBoard {
   constructor() {
-    this.lang = JSON.parse(localStorage.getItem('myKeyboardLang')) || 'en';
+    this.lang = localStorage.getItem('myKeyboardLang') || LANGUAGE.EN;
     this.activeKeyboard = enLowerCase;
     this.shiftIsPressed = false;
     this.altIsPressed = false;
@@ -136,22 +139,24 @@ class KeyBoard {
 
   static highlightKey(key) {
     key.classList.add('active');
-    setTimeout(() => {
-      key.classList.remove('active');
-    }, 300);
+  }
+
+  static stopHighlightKey(key) {
+    key.classList.remove('active');
   }
 
   createKeyboard(btns) {
     for (let i = 0; i < btns.length; i += 1) {
-      this.keyboard.append(KeyBoard.createKeyElement(btns[i]));
-    }
-
-    document.querySelectorAll('.key').forEach((item) => {
-      item.addEventListener('mousedown', () => {
-        KeyBoard.highlightKey(item);
-        KeyBoard.generateKeydownEvent(item.dataset.code);
+      const elem = KeyBoard.createKeyElement(btns[i]);
+      elem.addEventListener('mousedown', () => {
+        KeyBoard.highlightKey(elem);
+        KeyBoard.generateKeydownEvent(elem.dataset.code);
       });
-    });
+      document.addEventListener('mouseup', () => {
+        KeyBoard.stopHighlightKey(elem);
+      });
+      this.keyboard.append(elem);
+    }
   }
 
   changeCase() {
@@ -189,31 +194,31 @@ class KeyBoard {
       case enLowerCase:
         this.createKeyboard(ruLowerCase);
         this.activeKeyboard = ruLowerCase;
-        localStorage.setItem('myKeyboardLang', '"ru"');
+        localStorage.setItem('myKeyboardLang', LANGUAGE.RU);
         break;
 
       case enUpperCase:
         this.createKeyboard(ruUpperCase);
         this.activeKeyboard = ruUpperCase;
-        localStorage.setItem('myKeyboardLang', '"ru"');
+        localStorage.setItem('myKeyboardLang', LANGUAGE.RU);
         break;
 
       case ruLowerCase:
         this.createKeyboard(enLowerCase);
         this.activeKeyboard = enLowerCase;
-        localStorage.setItem('myKeyboardLang', '"en"');
+        localStorage.setItem('myKeyboardLang', LANGUAGE.EN);
         break;
 
       case ruUpperCase:
         this.createKeyboard(enUpperCase);
         this.activeKeyboard = enUpperCase;
-        localStorage.setItem('myKeyboardLang', '"en"');
+        localStorage.setItem('myKeyboardLang', LANGUAGE.EN);
         break;
 
       default:
         this.createKeyboard(enLowerCase);
         this.activeKeyboard = enLowerCase;
-        localStorage.setItem('myKeyboardLang', 'en');
+        localStorage.setItem('myKeyboardLang', LANGUAGE.EN);
     }
   }
 
@@ -226,92 +231,97 @@ class KeyBoard {
     parent.append(textarea);
     parent.append(this.keyboard);
 
-    this.activeKeyboard = this.lang === 'en' ? enLowerCase : ruLowerCase;
+    this.activeKeyboard = this.lang === LANGUAGE.EN ? enLowerCase : ruLowerCase;
     this.createKeyboard(this.activeKeyboard);
 
     document.addEventListener('keydown', (e) => {
       e.preventDefault();
-      document.querySelectorAll('.key').forEach((item) => {
-        if (e.location === parseInt(item.dataset.location, 10) && (
-          e.keyCode === parseInt(item.dataset.code, 10))) {
-          KeyBoard.highlightKey(item);
-          const start = textarea.selectionStart;
-          const end = textarea.selectionEnd;
-          switch (e.keyCode) {
-            case 13:
-              textarea.setRangeText('\n', textarea.selectionStart, textarea.selectionEnd, 'end');
-              break;
+      const item = document.querySelector(`[data-code="${e.keyCode}"]`);
+      if (e.location === parseInt(item.dataset.location, 10)) {
+        KeyBoard.highlightKey(item);
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        switch (e.keyCode) {
+          case 13:
+            textarea.setRangeText('\n', textarea.selectionStart, textarea.selectionEnd, 'end');
+            break;
 
-            case 8:
-              textarea.value = textarea.value.slice(0, start - 1)
-              + textarea.value.slice(end, textarea.value.length);
-              textarea.selectionStart = start - 1;
-              textarea.selectionEnd = end - 1;
-              break;
+          case 8:
+            textarea.value = textarea.value.slice(0, start - 1)
+            + textarea.value.slice(end, textarea.value.length);
+            textarea.selectionStart = start - 1;
+            textarea.selectionEnd = end - 1;
+            break;
 
-            case 20:
-              this.changeCase();
-              KeyBoard.highlightKey(document.querySelector('[data-code = "20"]'));
-              break;
+          case 20:
+            this.changeCase();
+            KeyBoard.highlightKey(document.querySelector('[data-code = "20"]'));
+            break;
 
-            case 17:
-              this.ctrlIsPressed = true;
-              if (this.altIsPressed) {
-                this.keyboard.innerHTML = '';
-                this.changeLang();
-                KeyBoard.highlightKey(document.querySelectorAll('[data-code = "17"]')[item.dataset.location - 1]);
-                KeyBoard.highlightKey(document.querySelectorAll('[data-code = "18"]')[item.dataset.location - 1]);
-              }
-              break;
+          case 17:
+            this.ctrlIsPressed = true;
+            if (this.altIsPressed) {
+              this.keyboard.innerHTML = '';
+              this.changeLang();
+              KeyBoard.highlightKey(document.querySelectorAll('[data-code = "17"]')[item.dataset.location - 1]);
+              KeyBoard.highlightKey(document.querySelectorAll('[data-code = "18"]')[item.dataset.location - 1]);
+            }
+            break;
 
-            case 16:
+          case 16:
+            if (!this.shiftIsPressed) {
               this.shiftIsPressed = true;
               this.changeCase();
               KeyBoard.highlightKey(document.querySelectorAll('[data-code = "16"]')[item.dataset.location - 1]);
-              break;
+            }
+            break;
 
-            case 18:
-              this.altIsPressed = true;
-              if (this.ctrlIsPressed) {
-                this.keyboard.innerHTML = '';
-                this.changeLang();
-                KeyBoard.highlightKey(document.querySelectorAll('[data-code = "18"]')[item.dataset.location - 1]);
-                KeyBoard.highlightKey(document.querySelectorAll('[data-code = "17"]')[item.dataset.location - 1]);
-              }
-              break;
+          case 18:
+            this.altIsPressed = true;
+            if (this.ctrlIsPressed) {
+              this.keyboard.innerHTML = '';
+              this.changeLang();
+              KeyBoard.highlightKey(document.querySelectorAll('[data-code = "18"]')[item.dataset.location - 1]);
+              KeyBoard.highlightKey(document.querySelectorAll('[data-code = "17"]')[item.dataset.location - 1]);
+            }
+            break;
 
-            case 46:
-              textarea.value = textarea.value.slice(0, start)
-              + textarea.value.slice(end + 1, textarea.value.length);
-              textarea.selectionStart = start;
-              textarea.selectionEnd = end;
-              break;
+          case 46:
+            textarea.value = textarea.value.slice(0, start)
+            + textarea.value.slice(end + 1, textarea.value.length);
+            textarea.selectionStart = start;
+            textarea.selectionEnd = end;
+            break;
 
-            case 91:
-              break;
+          case 91:
+            break;
 
-            case 37:
-              textarea.selectionStart = start - 1;
-              textarea.selectionEnd = end - 1;
-              break;
+          case 37:
+            textarea.selectionStart = start - 1;
+            textarea.selectionEnd = end - 1;
+            break;
 
-            case 39:
-              textarea.selectionStart = start + 1;
-              textarea.selectionEnd = end + 1;
-              break;
+          case 39:
+            textarea.selectionStart = start + 1;
+            textarea.selectionEnd = end + 1;
+            break;
 
-            case 9:
-              textarea.setRangeText('  ', textarea.selectionStart, textarea.selectionEnd, 'end');
-              break;
+          case 9:
+            textarea.setRangeText('  ', textarea.selectionStart, textarea.selectionEnd, 'end');
+            break;
 
-            default:
-              textarea.setRangeText(item.textContent, textarea.selectionStart, textarea.selectionEnd, 'end');
-          }
+          default:
+            textarea.setRangeText(item.textContent, textarea.selectionStart, textarea.selectionEnd, 'end');
         }
-      });
+      }
     });
 
     document.addEventListener('keyup', () => {
+      const activeElem = document.querySelector('.active');
+      if (activeElem) {
+        KeyBoard.stopHighlightKey(activeElem);
+      }
+
       if (this.shiftIsPressed) {
         this.shiftIsPressed = false;
         this.changeCase();
@@ -336,3 +346,5 @@ const newKeyboard = new KeyBoard();
 newKeyboard.insertKeyboard(wrapper);
 
 wrapper.append(description);
+
+document.body.append(wrapper);
